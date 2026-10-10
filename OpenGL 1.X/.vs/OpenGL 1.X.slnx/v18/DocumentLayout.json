@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\BRUCE\\Desktop\\C\u002B\u002B Content\\OpenGL 1.X\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F29918CA-FB81-4000-8F92-B86D5DFE0C94}|OpenGL 1.X.vcxproj|C:\\Users\\BRUCE\\Desktop\\C\u002B\u002B Content\\OpenGL 1.X\\OpenGL 1.X.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F29918CA-FB81-4000-8F92-B86D5DFE0C94}|OpenGL 1.X.vcxproj|solutionrelative:OpenGL 1.X.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 100,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OpenGL 1.X.cpp",
+              "DocumentMoniker": "C:\\Users\\BRUCE\\Desktop\\C\u002B\u002B Content\\OpenGL 1.X\\OpenGL 1.X.cpp",
+              "RelativeDocumentMoniker": "OpenGL 1.X.cpp",
+              "ToolTip": "C:\\Users\\BRUCE\\Desktop\\C\u002B\u002B Content\\OpenGL 1.X\\OpenGL 1.X.cpp",
+              "RelativeToolTip": "OpenGL 1.X.cpp",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAIwMwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-10-09T21:36:20.764Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
