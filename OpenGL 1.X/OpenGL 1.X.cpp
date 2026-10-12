@@ -1,5 +1,7 @@
 // OpenGL 1.X.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+#define STB_IMAGE_IMPLEMENTATION
+#include "external/stb_image.h"
 #include <GLFW/glfw3.h> 
 #include <iostream>
 #include <glm/glm.hpp>
