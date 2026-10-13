@@ -210,6 +210,14 @@ int main()
     // Varables end
 
 
+    int testCube = scene.CreateGameobject();
+    if (testCube != -1) {
+        scene.transforms[testCube].Position = glm::vec3(0.0f, 0.0f, -5.0f);
+    }
+    int testCube2 = scene.CreateGameobject();
+    if (testCube != -1) {
+        scene.transforms[testCube].Position = glm::vec3(0.0f, 0.0f, 5.0f);
+    }
 
 
     while (!glfwWindowShouldClose(window))
@@ -219,7 +227,7 @@ int main()
         lastframe = currentFrame;
 
         // clear both the color of the screen and the depth buffer
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
             
 
@@ -259,6 +267,8 @@ int main()
             -campos.z
         );
 
+
+        RenderScene(scene);
         
         glfwSwapBuffers(window);
 
