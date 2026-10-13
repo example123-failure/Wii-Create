@@ -1,13 +1,89 @@
 // OpenGL 1.X.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-#define STB_IMAGE_IMPLEMENTATION
-#include "external/stb_image.h"
-#include <GLFW/glfw3.h> 
-#include <iostream>
-#include <glm/glm.hpp>
-#include <cmath>
+#include <GLFW/glfw3.h>  // Windowing system
+#include <iostream> // input output
+#include <glm/glm.hpp> // Vector Math
+#include <cmath> // Trig math
+#include <vector> // Lists
 
 using namespace std;
+
+
+
+
+
+// Structs
+
+struct Transform
+{
+    glm::vec3 Position = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 Rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 Scale = glm::vec3(1.0f, 1.0f, 1.0f);
+
+};
+    
+
+
+
+// Classes
+
+
+class GameObject {
+public:
+    Transform transform;
+    string name;
+    int id;
+
+
+
+    GameObject(string ObjName, int ObjId) : name(ObjName), id(ObjId) {}
+};
+
+class GameScene {
+public:
+    static const int MAX_GAMEOBJECTS = 500;
+
+
+    // Tracks which objects are active
+    bool objectActive[MAX_GAMEOBJECTS] = { false };
+
+
+    // Data Pools
+    Transform transforms[MAX_GAMEOBJECTS];
+
+
+    int CreateGameobject() {
+        for (int i = 0; i < MAX_GAMEOBJECTS; i++)
+        {
+            if (!objectActive[i])
+            {
+                objectActive[i] = true;
+                transforms[i].Position = glm::vec3(0.0f, 0.0f, 0.0f);
+                transforms[i].Rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+                transforms[i].Scale = glm::vec3(1.0f, 1.0f, 1.0f);
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    void DestroyGameObject(int GameObjectID)
+    {
+        objectActive[GameObjectID] = false;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const int width = 1920;
@@ -50,14 +126,28 @@ void draw_cube();
 
 void update_camera_vectors();
 
+void RenderScene(GameScene& scene);
 
 // Main function
 
 int main()
 {
+    // Varables
+
+
+    GameScene scene;
 
     float deltatime = 0.0f;
     float lastframe = 0.0f;
+
+
+
+
+
+
+
+
+    // GLFW window varable init
 
     if (!glfwInit()) return -1;
 
@@ -92,6 +182,9 @@ int main()
     glLoadIdentity();
 
 
+    // Camera Varables
+
+
     float aspect = static_cast<float>(width) / height;
     float fov = 60.0f;
 
@@ -107,6 +200,14 @@ int main()
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
+
+
+
+
+
+
+    // Varables end
 
 
 
@@ -158,7 +259,7 @@ int main()
             -campos.z
         );
 
-        draw_cube();
+        
         glfwSwapBuffers(window);
 
         glfwPollEvents();
@@ -177,6 +278,46 @@ int main()
 
 // Function def
 
+
+void RenderScene(GameScene& scene)
+{
+    for (int i = 0; i < scene.MAX_GAMEOBJECTS; i++)
+    {
+        if (scene.objectActive[i])
+        {
+            glPushMatrix();
+
+
+
+            // Move Object in space
+            glTranslatef(
+                scene.transforms[i].Position.x,
+                scene.transforms[i].Position.y,
+                scene.transforms[i].Position.z
+            );
+
+            glRotatef(scene.transforms[i].Rotation.x, 1.0f, 0.0f, 0.0f);
+            glRotatef(scene.transforms[i].Rotation.y, 0.0f, 1.0f, 0.0f);
+            glRotatef(scene.transforms[i].Rotation.z, 0.0f, 0.0f, 1.0f);
+
+
+
+            glScalef(
+                scene.transforms[i].Scale.x,
+                scene.transforms[i].Scale.y,
+                scene.transforms[i].Scale.z
+            );
+
+
+
+            draw_cube();
+
+
+            glPopMatrix();
+
+        }
+    }
+}
 
 void input(GLFWwindow* window, float deltarune, float speed)
 {
@@ -275,7 +416,7 @@ void draw_cube()
     glVertex3f(1, -1, 1);
     glVertex3f(-1, -1, 1);
 
-    glEnd();
+    glEnd(); 
 }
 
 
